@@ -1,18 +1,9 @@
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useRef, useState } from "react";
 import Button from "./Button";
 import { DictionaryContext } from "@/context/DictionaryContext";
-import { searchWord } from "@/utils/api";
 
-function Result() {
-  const {
-    result,
-    setResult,
-    isLoading,
-    searchedWord,
-    setIsLoading,
-    error,
-    setError,
-  } = useContext(DictionaryContext);
+function Result({ result }) {
+  const { isLoading, error } = useContext(DictionaryContext);
 
   //   For toggling between speeches -> nound and verb
   const [speech, setSpeech] = useState("noun");
@@ -38,34 +29,27 @@ function Result() {
     audioRef.current.pause();
   }
 
-  async function fetchResult() {
-    try {
-      setIsLoading(true);
-      setError(false);
-      const fetchedResult = await searchWord(searchedWord);
-      setResult(fetchedResult);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchResult();
-  }, [searchedWord]);
-
   if (error)
     return (
-      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full lg:w-3/4">
+      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full">
         <p className="text-red-900 text-[20px] leading-[20px]">
           Something went wrong ⚠ {error.message}
         </p>
       </div>
     );
 
+  if (!result.length > 0) {
+    return (
+      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full">
+        <p className="text-[20px] leading-[20px]">
+          Please enter a word to search...
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full lg:w-3/4">
+    <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full">
       {isLoading && !error ? (
         <p className="text-[20px] leading-[30px] font-[400]">Loading...</p>
       ) : (
