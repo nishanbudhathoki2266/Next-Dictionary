@@ -5,7 +5,7 @@ function SearchBar() {
   // For making controlled input
   const [typedText, setTypedText] = useState("");
 
-  const { searchedWord, setSearchedWord } = useContext(DictionaryContext);
+  const { setSearchedWord } = useContext(DictionaryContext);
 
   function handleSearch(e) {
     e.preventDefault();

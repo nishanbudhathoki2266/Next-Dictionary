@@ -1,4 +1,5 @@
 export async function searchWord(keyword) {
+  console.log(keyword);
   const response = await fetch(
     `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`
   );
