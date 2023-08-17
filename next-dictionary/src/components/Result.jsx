@@ -17,13 +17,10 @@ function Result() {
   //   For toggling between speeches -> nound and verb
   const [speech, setSpeech] = useState("noun");
 
-  const noun = result[0]?.meanings
-    .filter((meaning) => meaning.partOfSpeech === "noun")[0]
-    .definitions.splice(0, 2);
-
-  const verb = result[0]?.meanings
-    .filter((meaning) => meaning.partOfSpeech === "verb")[0]
-    .definitions.splice(0, 2);
+  //   Deriving state from a active speech state
+  const meanings = result[0]?.meanings.filter(
+    (meaning) => meaning.partOfSpeech === speech
+  )[0].definitions;
 
   async function fetchResult() {
     try {
@@ -69,7 +66,16 @@ function Result() {
               Verb
             </Button>
           </div>
-          <div>{speech}</div>
+          <div>
+            {/* If we don't want all the result, we can just splice the array accordingly */}
+            {meanings?.map((meaning, index) => (
+              <span key={index}>
+                <p>
+                  {index + 1}. {meaning.definition}
+                </p>
+              </span>
+            ))}
+          </div>
         </Fragment>
       )}
     </div>
