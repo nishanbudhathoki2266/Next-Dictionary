@@ -31,16 +31,16 @@ function Result({ result }) {
 
   if (error)
     return (
-      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full">
+      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-max w-full">
         <p className="text-red-900 text-[20px] leading-[20px]">
           Something went wrong ⚠ {error.message}
         </p>
       </div>
     );
 
-  if (!result.length > 0) {
+  if (!isLoading && !result.length > 0) {
     return (
-      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full">
+      <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-max w-full">
         <p className="text-[20px] leading-[20px]">
           Please enter a word to search...
         </p>
@@ -49,7 +49,7 @@ function Result({ result }) {
   }
 
   return (
-    <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-auto w-full">
+    <div className="overflow-hidden shadow-md border-2 border-[##CED9E3] rounded-xl p-6 mt-4 border-gray-300 bg-[##CED9E3] min-h-max w-full">
       {isLoading && !error ? (
         <p className="text-[20px] leading-[30px] font-[400]">Loading...</p>
       ) : (
