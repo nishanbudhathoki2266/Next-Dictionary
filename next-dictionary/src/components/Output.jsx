@@ -20,9 +20,9 @@ function Output() {
       setIsLoading(true);
       setError(false);
       const fetchedResult = await searchWord(searchedWord);
-      // As the api values are not same for all words we are checking the length to assign values accordingly
       setResult(fetchedResult);
       setArchivedWords((currWords) =>
+        // Just making sure unique names are kept as archived names so that it would hep us to show repeated words only once
         Array.from(new Set([...currWords, fetchedResult[0].word]))
       );
       //   Just making sure that we append data to the existing archives
