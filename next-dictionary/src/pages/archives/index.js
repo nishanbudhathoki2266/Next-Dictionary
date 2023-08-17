@@ -23,11 +23,11 @@ function Archives() {
         </p>
       ) : (
         archives.map((archive, index) => (
-          <Fragment>
+          <Fragment key={index}>
             <p className="font-[500] text-[30px] leading-[30px] my-8">
               Word: {archive[0].word.toUpperCase()}
             </p>
-            <Result key={index} result={archive} />
+            <Result result={archive} />
           </Fragment>
         ))
       )}
