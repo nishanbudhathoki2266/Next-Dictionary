@@ -10,7 +10,6 @@ function SearchBar() {
   function handleSearch(e) {
     e.preventDefault();
     setSearchedWord(typedText);
-    setTypedText("");
   }
 
   return (
