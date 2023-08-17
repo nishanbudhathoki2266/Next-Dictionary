@@ -12,7 +12,7 @@ function index() {
         <Output />
         <Link
           href="/archives"
-          className="text-white bg-[#3EBCF7] border-0 py-12 px-16 text-center font-[900] mt-24 -skew-y-6 text-[50px] hover:scale-105 transition-all block mx-auto w-full lg:w-4/6 focus:outline-none rounded-3xl text-lg"
+          className="text-white leading-10 bg-[#3EBCF7] border-0 py-12 px-16 text-center font-[900] mt-24 -skew-y-6 text-[50px] hover:scale-105 transition-all block mx-auto w-full lg:w-4/6 focus:outline-none rounded-3xl text-lg"
         >
           All Your Archives
         </Link>
